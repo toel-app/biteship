@@ -10,7 +10,7 @@ import (
 	"reflect"
 )
 
-func (bite *Impl) GetCourierRates(request *RequestCourierRates) (*ResponseListRatesCouriers, *Error) {
+func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseListRatesCouriers, *Error) {
 	var resp = &ResponseListRatesCouriers{}
 
 	validate = validator.New()

@@ -17,7 +17,7 @@ func TestNew(t *testing.T) {
 	}
 
 	// Check if the Biteship instance has the correct Config
-	config := biteship.(*Impl).Config
+	config := biteship.(*Client).Config
 	if config == nil || config.SecretKey != testKey {
 		t.Errorf("New() returned Biteship instance with incorrect Config")
 	}
@@ -43,7 +43,7 @@ func TestNewWithCustomConfig(t *testing.T) {
 	}
 
 	// Check if the Biteship instance has the correct Config
-	config := biteship.(*Impl).Config
+	config := biteship.(*Client).Config
 	if config == nil || config.SecretKey != testKey || config.BiteshipUrl != testURL {
 		t.Errorf("New() returned Biteship instance with incorrect Config")
 	}

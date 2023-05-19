@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (bite *Impl) TrackOrder(orderId string) (*ResponseTrackingOrder, *Error) {
+func (bite *Client) TrackOrder(orderId string) (*ResponseTrackingOrder, *Error) {
 	resp := &ResponseTrackingOrder{}
 	var url = fmt.Sprintf("%s/v1/trackings/%s", bite.Config.BiteshipUrl, orderId)
 
@@ -17,7 +17,7 @@ func (bite *Impl) TrackOrder(orderId string) (*ResponseTrackingOrder, *Error) {
 	return resp, nil
 }
 
-func (bite *Impl) TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error) {
+func (bite *Client) TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error) {
 	resp := &ResponseTrackingOrder{}
 	var url = fmt.Sprintf("%s/v1/trackings/%s/couriers/%s", bite.Config.BiteshipUrl, waybillId, courierCode)
 

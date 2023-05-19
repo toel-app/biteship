@@ -7,12 +7,16 @@ import (
 	"testing"
 )
 
-const secretKey = "biteship_test.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzLXBrZyIsInVzZXJJZCI6IjYxNjQzYmJiNzRkYWMxMzdjMDIyMjUxYyIsImlhdCI6MTY0MTc3OTY0Nn0.LA2Opjs1wNTHeSLDAZpD3W9CqMoMfZvAkOhvSYfIftk"
-const invalidSecretKey = "biteship_test.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzLXBrZyIsInVzZXJJZCI6IjYxNjQzYmJiNzRkYWMxMzdjMDIyMjUxYyIsImlhdCI6MTY0MTc3OTY0Nn0.LA2Opjs1wNTHeSLDAZpD3W9CqMoMfZvAkOhvSYfIftks"
+const (
+	secretKey        = "biteship_test.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzLXBrZyIsInVzZXJJZCI6IjYxNjQzYmJiNzRkYWMxMzdjMDIyMjUxYyIsImlhdCI6MTY0MTc3OTY0Nn0.LA2Opjs1wNTHeSLDAZpD3W9CqMoMfZvAkOhvSYfIftk"
+	invalidSecretKey = "biteship_test.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzLXBrZyIsInVzZXJJZCI6IjYxNjQzYmJiNzRkYWMxMzdjMDIyMjUxYyIsImlhdCI6MTY0MTc3OTY0Nn0.LA2Opjs1wNTHeSLDAZpD3W9CqMoMfZvAkOhvSYfIftks"
+)
 
-var orderIdConfirmed = "61E02D940904D76428ADA74E"
-var orderIdNotConfirmed = ""
-var orderIdCancelled = "61DBB6B1A4720916B2D1F576"
+var (
+	orderIdConfirmed    = "61E02D940904D76428ADA74E"
+	orderIdNotConfirmed = ""
+	orderIdCancelled    = "61DBB6B1A4720916B2D1F576"
+)
 
 func TestGetCourier(t *testing.T) {
 	biteship := New(secretKey)
@@ -164,7 +168,7 @@ func TestCreateAnOrderDirectConfirm(t *testing.T) {
 		DeliveryType:                  DeliveryTypeNow,
 		DeliveryDate:                  "2022-01-14",
 		DeliveryTime:                  "12:00",
-		OrderNote:                     "Please be carefull",
+		OrderNote:                     "Please be careful",
 		Metadata:                      nil,
 		Items:                         items,
 	}
@@ -225,7 +229,7 @@ func TestCreateAnOrderWithDeliveryLater(t *testing.T) {
 		DeliveryType:                  "later", // later or now
 		DeliveryDate:                  "2025-12-14",
 		DeliveryTime:                  "12:00",
-		OrderNote:                     "Please be carefull",
+		OrderNote:                     "Please be careful",
 		Metadata:                      nil,
 		Items:                         items,
 	}
@@ -286,7 +290,7 @@ func TestCreateAnOrderWithInvalidSecretKey(t *testing.T) {
 		DeliveryType:                  DeliveryTypeNow,
 		DeliveryDate:                  "2022-01-11",
 		DeliveryTime:                  "12:00",
-		OrderNote:                     "Please be carefull",
+		OrderNote:                     "Please be careful",
 		Metadata:                      nil,
 		Items:                         items,
 	}

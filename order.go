@@ -18,7 +18,7 @@ const (
 	DeliveryTypeLater DeliveryType = "later"
 )
 
-func (bite *Impl) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreateOrder, *Error) {
+func (bite *Client) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreateOrder, *Error) {
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders", bite.Config.BiteshipUrl)
 	var errMarshal error
@@ -48,7 +48,7 @@ func (bite *Impl) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreate
 	return resp, nil
 }
 
-func (bite *Impl) RetrieveOrder(orderId string) (*ResponseRetrieveOrder, *Error) {
+func (bite *Client) RetrieveOrder(orderId string) (*ResponseRetrieveOrder, *Error) {
 
 	resp := &ResponseRetrieveOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.Config.BiteshipUrl, orderId)
@@ -61,7 +61,7 @@ func (bite *Impl) RetrieveOrder(orderId string) (*ResponseRetrieveOrder, *Error)
 	return resp, nil
 }
 
-func (bite *Impl) UpdateOrder(orderId string, request interface{}) (*ResponseCreateOrder, *Error) {
+func (bite *Client) UpdateOrder(orderId string, request interface{}) (*ResponseCreateOrder, *Error) {
 
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.Config.BiteshipUrl, orderId)
@@ -87,7 +87,7 @@ func (bite *Impl) UpdateOrder(orderId string, request interface{}) (*ResponseCre
 	return resp, nil
 }
 
-func (bite *Impl) ConfirmOrder(orderId string) (*ResponseCreateOrder, *Error) {
+func (bite *Client) ConfirmOrder(orderId string) (*ResponseCreateOrder, *Error) {
 
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s/confirm", bite.Config.BiteshipUrl, orderId)
@@ -100,7 +100,7 @@ func (bite *Impl) ConfirmOrder(orderId string) (*ResponseCreateOrder, *Error) {
 	return resp, nil
 }
 
-func (bite *Impl) CancelOrder(orderId string, reason string) (*ResponseCancelOrder, *Error) {
+func (bite *Client) CancelOrder(orderId string, reason string) (*ResponseCancelOrder, *Error) {
 	var body io.Reader
 	resp := &ResponseCancelOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.Config.BiteshipUrl, orderId)

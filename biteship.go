@@ -33,7 +33,7 @@ type Biteship interface {
 	TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error)
 }
 
-type Impl struct {
+type Client struct {
 	Config      *ConfigOption
 	HttpRequest *HttpRequestImpl
 }
@@ -46,7 +46,7 @@ func New(key string, config ...ConfigOption) Biteship {
 		defaultConfig.SecretKey = key
 	}
 
-	return &Impl{
+	return &Client{
 		Config: defaultConfig,
 	}
 }

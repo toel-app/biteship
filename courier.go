@@ -28,7 +28,7 @@ const (
 
 type CourierProvider string
 
-func (bite *Impl) GetCouriers() (*ResponseListCourier, *Error) {
+func (bite *Client) GetCouriers() (*ResponseListCourier, *Error) {
 	resp := &ResponseListCourier{}
 	var url = fmt.Sprintf("%s/v1/couriers", bite.Config.BiteshipUrl)
 
