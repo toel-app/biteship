@@ -1,2 +1,1 @@
-# biteship
-Go library for Biteship
+## Unstable
