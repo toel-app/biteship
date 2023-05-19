@@ -11,6 +11,13 @@ import (
 	"reflect"
 )
 
+type DeliveryType string
+
+const (
+	DeliveryTypeNow   DeliveryType = "now"
+	DeliveryTypeLater DeliveryType = "later"
+)
+
 func (bite *Impl) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreateOrder, *Error) {
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders", bite.Config.BiteshipUrl)

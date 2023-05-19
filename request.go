@@ -21,34 +21,34 @@ type ProductItem struct {
 }
 
 type CreateOrderRequestParam struct {
-	ShipperContactName            string     `json:"shipper_contact_name"`
-	ShipperContactPhone           string     `json:"shipper_contact_phone"`
-	ShipperContactEmail           string     `json:"shipper_contact_email"`
-	ShipperOrganization           string     `json:"shipper_organization"`
-	OriginContactName             string     `json:"origin_contact_name"`
-	OriginContactPhone            string     `json:"origin_contact_phone"`
-	OriginAddress                 string     `json:"origin_address"`
-	OriginNote                    string     `json:"origin_note"`
-	OriginPostalCode              uint       `json:"origin_postal_code"`
-	OriginCoordinate              Coordinate `json:"origin_coordinate"`
-	DestinationContactName        string     `json:"destination_contact_name"`
-	DestinationContactPhone       string     `json:"destination_contact_phone"`
-	DestinationContactEmail       string     `json:"destination_contact_email"`
-	DestinationAddress            string     `json:"destination_address"`
-	DestinationPostalCode         uint       `json:"destination_postal_code"`
-	DestinationNote               string     `json:"destination_note"`
-	DestinationCoordinate         Coordinate `json:"destination_coordinate"`
-	DestinationCashOnDelivery     *uint      `json:"destination_cash_on_delivery"` // Optional
-	DestinationCashOnDeliveryType *string    `json:"destination_cash_on_delivery_type"`
-	CourierCompany                string     `json:"courier_company" binding:"required"`
-	CourierType                   string     `json:"courier_type" binding:"required"`
-	CourierInsurance              uint       `json:"courier_insurance"`
-	DeliveryType                  string     `json:"delivery_type" binding:"required"` // "later" or "now"
-	DeliveryDate                  string     `json:"delivery_date"`                    // yyyy-mm-dd
-	DeliveryTime                  string     `json:"delivery_time"`                    // hh:mm
-	PaymentType                   string     `json:"payment_type" binding:"required"`  // Set to be 'online'
-	OrderNote                     string     `json:"order_note"`
-	Metadata                      Metadata   `json:"metadata"` // Optional
+	ShipperContactName            string          `json:"shipper_contact_name"`
+	ShipperContactPhone           string          `json:"shipper_contact_phone"`
+	ShipperContactEmail           string          `json:"shipper_contact_email"`
+	ShipperOrganization           string          `json:"shipper_organization"`
+	OriginContactName             string          `json:"origin_contact_name"`
+	OriginContactPhone            string          `json:"origin_contact_phone"`
+	OriginAddress                 string          `json:"origin_address"`
+	OriginNote                    string          `json:"origin_note"`
+	OriginPostalCode              uint            `json:"origin_postal_code"`
+	OriginCoordinate              Coordinate      `json:"origin_coordinate"`
+	DestinationContactName        string          `json:"destination_contact_name"`
+	DestinationContactPhone       string          `json:"destination_contact_phone"`
+	DestinationContactEmail       string          `json:"destination_contact_email"`
+	DestinationAddress            string          `json:"destination_address"`
+	DestinationPostalCode         uint            `json:"destination_postal_code"`
+	DestinationNote               string          `json:"destination_note"`
+	DestinationCoordinate         Coordinate      `json:"destination_coordinate"`
+	DestinationCashOnDelivery     *uint           `json:"destination_cash_on_delivery"` // Optional
+	DestinationCashOnDeliveryType *string         `json:"destination_cash_on_delivery_type"`
+	CourierCompany                CourierProvider `json:"courier_company" binding:"required"`
+	CourierType                   string          `json:"courier_type" binding:"required"`
+	CourierInsurance              uint            `json:"courier_insurance"`
+	DeliveryType                  DeliveryType    `json:"delivery_type" binding:"required"` // "later" or "now"
+	DeliveryDate                  string          `json:"delivery_date"`                    // yyyy-mm-dd
+	DeliveryTime                  string          `json:"delivery_time"`                    // hh:mm
+	PaymentType                   string          `json:"payment_type" binding:"required"`  // Set to be 'online'
+	OrderNote                     string          `json:"order_note"`
+	Metadata                      Metadata        `json:"metadata"` // Optional
 
 	Items []ProductItem `json:"items"`
 }
