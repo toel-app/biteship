@@ -5,29 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bb86b97-df2e-43f1-88d3-cfed82c793cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/biteship.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biteship.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biteship_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/courier.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/error.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/error_codes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http_request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/integration_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rates.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/status.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracking.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/e2e.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/biteship.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/integration_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +31,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Q0mnGKSUcwhxsekwou8W3WWYSy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
