@@ -7,9 +7,9 @@ import (
 
 func (bite *Client) TrackOrder(orderId string) (*ResponseTrackingOrder, *Error) {
 	resp := &ResponseTrackingOrder{}
-	var url = fmt.Sprintf("%s/v1/trackings/%s", bite.Config.BiteshipUrl, orderId)
+	var url = fmt.Sprintf("%s/v1/trackings/%s", bite.BiteshipUrl, orderId)
 
-	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.Config.SecretKey, nil, resp)
+	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
@@ -19,9 +19,9 @@ func (bite *Client) TrackOrder(orderId string) (*ResponseTrackingOrder, *Error) 
 
 func (bite *Client) TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error) {
 	resp := &ResponseTrackingOrder{}
-	var url = fmt.Sprintf("%s/v1/trackings/%s/couriers/%s", bite.Config.BiteshipUrl, waybillId, courierCode)
+	var url = fmt.Sprintf("%s/v1/trackings/%s/couriers/%s", bite.BiteshipUrl, waybillId, courierCode)
 
-	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.Config.SecretKey, nil, resp)
+	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}

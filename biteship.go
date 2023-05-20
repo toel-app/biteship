@@ -1,8 +1,20 @@
 package biteship
 
-import "github.com/go-playground/validator/v10"
+import (
+	"github.com/go-playground/validator/v10"
+)
 
 var validate *validator.Validate
+
+const (
+	DefaultUrl = "https://api.biteship.com"
+)
+
+type Client struct {
+	SecretKey   string
+	BiteshipUrl string
+	HttpRequest IHttpRequest
+}
 
 type Biteship interface {
 	GetCouriers() (*ResponseListCourier, *Error)
@@ -33,20 +45,16 @@ type Biteship interface {
 	TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error)
 }
 
-type Client struct {
-	Config      *ConfigOption
-	HttpRequest *HttpRequestImpl
-}
-
-func New(key string, config ...ConfigOption) Biteship {
-	defaultConfig := DefaultConfig(key)
-
-	if len(config) > 0 {
-		defaultConfig = &config[0]
-		defaultConfig.SecretKey = key
+func New(configs ...ClientOption) Biteship {
+	client := &Client{
+		SecretKey:   "",
+		BiteshipUrl: DefaultUrl,
+		HttpRequest: NewHttp(),
 	}
 
-	return &Client{
-		Config: defaultConfig,
+	for _, config := range configs {
+		config.Apply(client)
 	}
+
+	return client
 }

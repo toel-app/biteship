@@ -21,13 +21,16 @@ import (
 )
 
 func main() {
-	secretKey := "abcdefg"
-	biteshipApp := biteship.New(secretKey)
+	b := biteship.New(
+		biteship.WithSecret("somesecret"),
+		biteship.WithUrl("https://api.biteship.com"),
+	)
 
-	resp, err := biteshipApp.GetCourier()
+	response, err := b.GetCouriers()
 	if err != nil {
-		panic(err)
+		log.Panic(err)
 	}
-	fmt.Println(resp)
+
+	fmt.Println(response.Couriers)
 }
 ```

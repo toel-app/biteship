@@ -19,7 +19,8 @@ func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseList
 		return resp, ErrorRequestParam(errValidate)
 	}
 
-	var url = fmt.Sprintf("%s/v1/rates/couriers", bite.Config.BiteshipUrl)
+	var url = fmt.Sprintf("%s/v1/rates/couriers", bite.
+	BiteshipUrl)
 
 	var errMarshal error
 	jsonRequest := []byte("")
@@ -34,7 +35,8 @@ func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseList
 		}
 	}
 
-	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.Config.SecretKey, bytes.NewBuffer(jsonRequest), resp)
+	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.
+	SecretKey, bytes.NewBuffer(jsonRequest), resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}

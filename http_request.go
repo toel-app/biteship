@@ -7,15 +7,17 @@ import (
 	"net/http"
 )
 
-type HttpRequest interface {
+type IHttpRequest interface {
 	Call(method string, url string, secretKey string, body io.Reader, result interface{}) *Error
 }
 
-type HttpRequestImpl struct {
-	Config *ConfigOption
+type HttpRequest struct{}
+
+func NewHttp() IHttpRequest {
+	return &HttpRequest{}
 }
 
-func (client *HttpRequestImpl) Call(method string, url string, secretKey string, body io.Reader, result interface{}) *Error {
+func (client *HttpRequest) Call(method string, url string, secretKey string, body io.Reader, result interface{}) *Error {
 	if secretKey == "" {
 		return &Error{
 			Status:  http.StatusUnauthorized,
@@ -39,7 +41,7 @@ func (client *HttpRequestImpl) Call(method string, url string, secretKey string,
 	return client.doRequest(req, result)
 }
 
-func (client *HttpRequestImpl) doRequest(req *http.Request, result interface{}) *Error {
+func (client *HttpRequest) doRequest(req *http.Request, result interface{}) *Error {
 	httpClient := &http.Client{}
 
 	response, errRequest := httpClient.Do(req)

@@ -30,9 +30,11 @@ type CourierProvider string
 
 func (bite *Client) GetCouriers() (*ResponseListCourier, *Error) {
 	resp := &ResponseListCourier{}
-	var url = fmt.Sprintf("%s/v1/couriers", bite.Config.BiteshipUrl)
+	var url = fmt.Sprintf("%s/v1/couriers", bite.
+	BiteshipUrl)
 
-	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.Config.SecretKey, nil, resp)
+	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.
+	SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}

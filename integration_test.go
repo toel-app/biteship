@@ -19,7 +19,7 @@ var (
 )
 
 func TestGetCourier(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.GetCouriers()
 	assert.True(t, resp.Success)
@@ -27,7 +27,7 @@ func TestGetCourier(t *testing.T) {
 }
 
 func TestGetCourierWithInvalidSecretKey(t *testing.T) {
-	biteship := New(invalidSecretKey)
+	biteship := New(WithSecret(invalidSecretKey))
 
 	resp, err := biteship.GetCouriers()
 	assert.Equal(t, *resp, ResponseListCourier{})
@@ -36,7 +36,7 @@ func TestGetCourierWithInvalidSecretKey(t *testing.T) {
 }
 
 func TestGetRatesCouriers(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -64,7 +64,7 @@ func TestGetRatesCouriers(t *testing.T) {
 }
 
 func TestGetFailRatesCouriers(t *testing.T) {
-	biteship := New(invalidSecretKey)
+	biteship := New(WithSecret(invalidSecretKey))
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -93,7 +93,7 @@ func TestGetFailRatesCouriers(t *testing.T) {
 }
 
 func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -120,7 +120,7 @@ func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
 }
 
 func TestCreateAnOrderDirectConfirm(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	var items []ProductItem
 	items = append(items, ProductItem{
@@ -181,7 +181,7 @@ func TestCreateAnOrderDirectConfirm(t *testing.T) {
 }
 
 func TestCreateAnOrderWithDeliveryLater(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	var items []ProductItem
 	items = append(items, ProductItem{
@@ -242,7 +242,7 @@ func TestCreateAnOrderWithDeliveryLater(t *testing.T) {
 }
 
 func TestCreateAnOrderWithInvalidSecretKey(t *testing.T) {
-	biteship := New(invalidSecretKey)
+	biteship := New(WithSecret(invalidSecretKey))
 
 	var items []ProductItem
 	items = append(items, ProductItem{
@@ -302,7 +302,7 @@ func TestCreateAnOrderWithInvalidSecretKey(t *testing.T) {
 }
 
 func TestRetrieveOrder(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.RetrieveOrder(orderIdConfirmed)
 	assert.True(t, resp.Success)
@@ -311,7 +311,7 @@ func TestRetrieveOrder(t *testing.T) {
 }
 
 func TestRetrieveOrderWithInvalidKey(t *testing.T) {
-	biteship := New(invalidSecretKey)
+	biteship := New(WithSecret(invalidSecretKey))
 
 	resp, err := biteship.RetrieveOrder(orderIdConfirmed)
 	assert.Equal(t, *resp, ResponseRetrieveOrder{})
@@ -320,7 +320,7 @@ func TestRetrieveOrderWithInvalidKey(t *testing.T) {
 }
 
 func TestRetrieveOrderWithInvalidOrderId(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	resp, err := biteship.RetrieveOrder("61dce8889a096b081e70198f")
 
@@ -330,7 +330,7 @@ func TestRetrieveOrderWithInvalidOrderId(t *testing.T) {
 }
 
 func TestUpdateOrderBeforeConfirmed(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
 		OriginAddress string `json:"origin_address"`
@@ -344,7 +344,7 @@ func TestUpdateOrderBeforeConfirmed(t *testing.T) {
 }
 
 func TestUpdateOrderThatWasConfirmed(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
 		OriginAddress string `json:"origin_address"`
@@ -358,7 +358,7 @@ func TestUpdateOrderThatWasConfirmed(t *testing.T) {
 }
 
 func TestUpdateOrderThatWasPassedTime(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
 		OriginAddress string `json:"origin_address"`
@@ -371,7 +371,7 @@ func TestUpdateOrderThatWasPassedTime(t *testing.T) {
 }
 
 func TestConfirmOrder(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.ConfirmOrder(orderIdNotConfirmed)
 	assert.True(t, resp.Success)
@@ -381,7 +381,7 @@ func TestConfirmOrder(t *testing.T) {
 }
 
 func TestConfirmOrderThatWasBeenConfirmed(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	_, err := biteship.ConfirmOrder(orderIdConfirmed)
 	assert.Equal(t, err.Status, http.StatusBadRequest)
@@ -390,7 +390,7 @@ func TestConfirmOrderThatWasBeenConfirmed(t *testing.T) {
 }
 
 func TestConfirmOrderThatWasBeenCancelled(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	_, err := biteship.ConfirmOrder(orderIdCancelled)
 	assert.Equal(t, err.Status, http.StatusBadRequest)
@@ -399,7 +399,7 @@ func TestConfirmOrderThatWasBeenCancelled(t *testing.T) {
 }
 
 func TestCancelOrder(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	reason := "Ingin mengganti kurir"
 
@@ -414,7 +414,7 @@ func TestCancelOrder(t *testing.T) {
 }
 
 func TestCancelOrderThatWasConfirmed(t *testing.T) {
-	biteship := New(secretKey)
+	biteship := New(WithSecret(secretKey))
 
 	reason := "Ingin mengganti kurir"
 
