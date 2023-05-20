@@ -21,7 +21,7 @@ const (
 func (bite *Client) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreateOrder, *Error) {
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders", bite.
-	BiteshipUrl)
+		BiteshipUrl)
 	var errMarshal error
 	jsonRequest := []byte("")
 
@@ -42,7 +42,7 @@ func (bite *Client) CreateOrder(request *CreateOrderRequestParam) (*ResponseCrea
 	}
 
 	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.
-	SecretKey, bytes.NewBuffer(jsonRequest), resp)
+		SecretKey, bytes.NewBuffer(jsonRequest), resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
@@ -54,10 +54,10 @@ func (bite *Client) RetrieveOrder(orderId string) (*ResponseRetrieveOrder, *Erro
 
 	resp := &ResponseRetrieveOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.
-	BiteshipUrl, orderId)
+		BiteshipUrl, orderId)
 
 	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.
-	SecretKey, nil, resp)
+		SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
@@ -69,7 +69,7 @@ func (bite *Client) UpdateOrder(orderId string, request interface{}) (*ResponseC
 
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.
-	BiteshipUrl, orderId)
+		BiteshipUrl, orderId)
 	var errMarshal error
 	jsonRequest := []byte("")
 
@@ -84,7 +84,7 @@ func (bite *Client) UpdateOrder(orderId string, request interface{}) (*ResponseC
 	}
 
 	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.
-	SecretKey, bytes.NewBuffer(jsonRequest), resp)
+		SecretKey, bytes.NewBuffer(jsonRequest), resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
@@ -97,10 +97,10 @@ func (bite *Client) ConfirmOrder(orderId string) (*ResponseCreateOrder, *Error) 
 
 	resp := &ResponseCreateOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s/confirm", bite.
-	BiteshipUrl, orderId)
+		BiteshipUrl, orderId)
 
 	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.
-	SecretKey, nil, resp)
+		SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
@@ -112,7 +112,7 @@ func (bite *Client) CancelOrder(orderId string, reason string) (*ResponseCancelO
 	var body io.Reader
 	resp := &ResponseCancelOrder{}
 	var url = fmt.Sprintf("%s/v1/orders/%s", bite.
-	BiteshipUrl, orderId)
+		BiteshipUrl, orderId)
 	var errMarshal error
 	jsonRequest := []byte("")
 
@@ -131,7 +131,7 @@ func (bite *Client) CancelOrder(orderId string, reason string) (*ResponseCancelO
 	}
 
 	errRequest := bite.HttpRequest.Call(http.MethodDelete, url, bite.
-	SecretKey, body, resp)
+		SecretKey, body, resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
