@@ -14,6 +14,10 @@ type Error struct {
 	Code      int    `json:"code,omitempty"`
 }
 
+func (e *Error) Error() string {
+	return e.Message
+}
+
 func ErrorGo(err error) *Error {
 	return &Error{
 		Status:    http.StatusInternalServerError,
