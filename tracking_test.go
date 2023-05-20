@@ -102,7 +102,14 @@ func TestTrackOrderByWaybill_Error(t *testing.T) {
 	)
 
 	mockError := Error{}
-	mockHttp.On("Call", mock.Anything, mock.Anything, mock.Anything, mock.Anything, mock.Anything).Return(&mockError).Once()
+	mockHttp.On(
+		"Call",
+		mock.Anything,
+		mock.Anything,
+		mock.Anything,
+		mock.Anything,
+		mock.Anything,
+	).Return(&mockError).Once()
 
 	response, err := mockClient.TrackOrderByWaybill(mockWaybillId, string(mockCourierCode))
 
