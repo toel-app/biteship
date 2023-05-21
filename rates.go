@@ -11,19 +11,16 @@ import (
 )
 
 func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseListRatesCouriers, *Error) {
-	var resp = &ResponseListRatesCouriers{}
+	var (
+		resp        = &ResponseListRatesCouriers{}
+		url         = fmt.Sprintf("%s/v1/rates/couriers", bite.BiteshipUrl)
+		jsonRequest = []byte("")
+		errMarshal  error
+	)
 
-	validate = validator.New()
-	errValidate := validate.Struct(request)
-	if errValidate != nil {
+	if errValidate := validator.New().Struct(request); errValidate != nil {
 		return resp, ErrorRequestParam(errValidate)
 	}
-
-	var url = fmt.Sprintf("%s/v1/rates/couriers", bite.
-		BiteshipUrl)
-
-	var errMarshal error
-	jsonRequest := []byte("")
 
 	isParamsNil := reflect.ValueOf(request).Kind() == reflect.Ptr && reflect.ValueOf(request).IsNil()
 
@@ -35,8 +32,7 @@ func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseList
 		}
 	}
 
-	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.
-		SecretKey, bytes.NewBuffer(jsonRequest), resp)
+	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.SecretKey, bytes.NewBuffer(jsonRequest), resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}

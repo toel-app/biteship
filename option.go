@@ -4,6 +4,7 @@ type ClientOption interface {
 	Apply(client *Client)
 }
 
+// WithSecret example: biteship_test.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....
 func WithSecret(secret string) ClientOption {
 	return withSecret{secret: secret}
 }
