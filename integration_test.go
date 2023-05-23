@@ -3,7 +3,9 @@ package biteship
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"log"
 	"net/http"
+	"strings"
 	"testing"
 )
 
@@ -438,4 +440,39 @@ func TestCancelOrderThatWasConfirmed(t *testing.T) {
 	assert.EqualValues(t, resp.Status, StatusCancelled)
 	assert.Equal(t, resp.Id, orderIdConfirmed)
 	assert.Equal(t, resp.CancellationReason, reason)
+}
+
+func TestRetrieveArea_Single(t *testing.T) {
+	biteship := New(WithSecret(secretKey))
+
+	resp, err := biteship.RetrieveArea("ID", "Jakarta Selatan")
+
+	assert.Nil(t, err)
+	assert.NotNil(t, resp)
+	assert.IsType(t, resp, &RetrieveAreaResponse{})
+}
+
+func TestRetrieveAreaByID(t *testing.T) {
+	biteship := New(WithSecret(secretKey))
+
+	resp, err := biteship.RetrieveArea("ID", "Jakarta Selatan")
+
+	if err != nil || resp == nil {
+		log.Println("failed retrieve area - single")
+		t.Fail()
+		return
+	}
+
+	areaId := resp.Areas[0].ID
+	response, err := biteship.RetrieveAreaByID(areaId)
+
+	assert.Nil(t, err)
+	assert.NotNil(t, response)
+
+	for _, area := range response.Areas {
+		if !strings.Contains(area.ID, areaId) {
+			log.Println("invalid areas")
+			t.Fail()
+		}
+	}
 }

@@ -28,12 +28,12 @@ const (
 
 type CourierProvider string
 
-func (bite *Client) GetCouriers() (*ResponseListCourier, *Error) {
+func (client *Client) GetCouriers() (*ResponseListCourier, *Error) {
 	resp := &ResponseListCourier{}
-	var url = fmt.Sprintf("%s/v1/couriers", bite.
+	var url = fmt.Sprintf("%s/v1/couriers", client.
 		BiteshipUrl)
 
-	errRequest := bite.HttpRequest.Call(http.MethodGet, url, bite.
+	errRequest := client.HttpRequest.Call(http.MethodGet, url, client.
 		SecretKey, nil, resp)
 	if errRequest != nil {
 		return resp, errRequest
