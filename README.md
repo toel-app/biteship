@@ -8,7 +8,7 @@
 
 ### Installation
 ```
-go get -u github.com/toel-app/biteship-go
+go get -u github.com/toel-app/biteship
 ```
 
 ### Usage
