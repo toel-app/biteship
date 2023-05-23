@@ -37,6 +37,8 @@ type Biteship interface {
 	// TrackOrderByWaybill (Public Tracking) This endpoint can be used to track any other waybill from any other source.
 	// It requires the courier code which you can find the in Courier API
 	TrackOrderByWaybill(waybillId string, courierCode string) (*ResponseTrackingOrder, *Error)
+	RetrieveArea(countries, input string) (*RetrieveAreaResponse, *Error)
+	RetrieveAreaByID(id string) (*RetrieveAreaResponse, *Error)
 }
 
 func New(configs ...ClientOption) Biteship {

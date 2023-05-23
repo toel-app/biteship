@@ -10,10 +10,10 @@ import (
 	"reflect"
 )
 
-func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseListRatesCouriers, *Error) {
+func (client *Client) GetCourierRates(request *RequestCourierRates) (*ResponseListRatesCouriers, *Error) {
 	var (
 		resp        = &ResponseListRatesCouriers{}
-		url         = fmt.Sprintf("%s/v1/rates/couriers", bite.BiteshipUrl)
+		url         = fmt.Sprintf("%s/v1/rates/couriers", client.BiteshipUrl)
 		jsonRequest = []byte("")
 		errMarshal  error
 	)
@@ -32,7 +32,7 @@ func (bite *Client) GetCourierRates(request *RequestCourierRates) (*ResponseList
 		}
 	}
 
-	errRequest := bite.HttpRequest.Call(http.MethodPost, url, bite.SecretKey, bytes.NewBuffer(jsonRequest), resp)
+	errRequest := client.HttpRequest.Call(http.MethodPost, url, client.SecretKey, bytes.NewBuffer(jsonRequest), resp)
 	if errRequest != nil {
 		return resp, errRequest
 	}
