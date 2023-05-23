@@ -29,13 +29,13 @@ type CreateOrderRequestParam struct {
 	OriginContactPhone            string          `json:"origin_contact_phone"`
 	OriginAddress                 string          `json:"origin_address"`
 	OriginNote                    string          `json:"origin_note"`
-	OriginPostalCode              uint            `json:"origin_postal_code"`
+	OriginPostalCode              uint32          `json:"origin_postal_code"`
 	OriginCoordinate              Coordinate      `json:"origin_coordinate"`
 	DestinationContactName        string          `json:"destination_contact_name"`
 	DestinationContactPhone       string          `json:"destination_contact_phone"`
 	DestinationContactEmail       string          `json:"destination_contact_email"`
 	DestinationAddress            string          `json:"destination_address"`
-	DestinationPostalCode         uint            `json:"destination_postal_code"`
+	DestinationPostalCode         uint32          `json:"destination_postal_code"`
 	DestinationNote               string          `json:"destination_note"`
 	DestinationCoordinate         Coordinate      `json:"destination_coordinate"`
 	DestinationCashOnDelivery     *uint           `json:"destination_cash_on_delivery"` // Optional
@@ -65,10 +65,10 @@ type ItemCourierRate struct {
 }
 
 type RequestCourierRates struct {
-	OriginLatitude        float64           `json:"origin_latitude,omitempty"`
-	OriginLongitude       float64           `json:"origin_longitude,omitempty"`
-	DestinationLatitude   float64           `json:"destination_latitude,omitempty"`
-	DestinationLongitude  float64           `json:"destination_longitude,omitempty"`
+	OriginLatitude        *float64          `json:"origin_latitude,omitempty"`
+	OriginLongitude       *float64          `json:"origin_longitude,omitempty"`
+	DestinationLatitude   *float64          `json:"destination_latitude,omitempty"`
+	DestinationLongitude  *float64          `json:"destination_longitude,omitempty"`
 	OriginPostalCode      uint              `json:"origin_postal_code,omitempty"`
 	DestinationPostalCode uint              `json:"destination_postal_code,omitempty"`
 	Couriers              string            `json:"couriers" validate:"required"` // "grab, gojek, jne, tiki, jet, jnt, sicepat, wahana, pos, lion, ninja, anteraja, rpx, paxel, mrspeedy, lalamove, deliveree, sap"

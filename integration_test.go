@@ -37,6 +37,10 @@ func TestGetCourierWithInvalidSecretKey(t *testing.T) {
 
 func TestGetRatesCouriers(t *testing.T) {
 	biteship := New(WithSecret(secretKey))
+	var (
+		destLat  = -6.2441792
+		destLong = 106.783529000
+	)
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -51,8 +55,8 @@ func TestGetRatesCouriers(t *testing.T) {
 	})
 
 	req := RequestCourierRates{
-		DestinationLatitude:  -6.2441792,
-		DestinationLongitude: 106.783529000,
+		DestinationLatitude:  &destLat,
+		DestinationLongitude: &destLong,
 		OriginPostalCode:     12440,
 		Couriers:             fmt.Sprintf("%s,%s", CourierProviderJNE, CourierProviderTIKI),
 		Items:                items,
@@ -65,6 +69,10 @@ func TestGetRatesCouriers(t *testing.T) {
 
 func TestGetFailRatesCouriers(t *testing.T) {
 	biteship := New(WithSecret(invalidSecretKey))
+	var (
+		destLat  = -6.2441792
+		destLong = 106.783529000
+	)
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -79,8 +87,8 @@ func TestGetFailRatesCouriers(t *testing.T) {
 	})
 
 	req := RequestCourierRates{
-		DestinationLatitude:  -6.2441792,
-		DestinationLongitude: 106.783529000,
+		DestinationLatitude:  &destLat,
+		DestinationLongitude: &destLong,
 		OriginPostalCode:     12440,
 		Couriers:             fmt.Sprintf("%s,%s", CourierProviderJNE, CourierProviderTIKI),
 		Items:                items,
@@ -94,6 +102,10 @@ func TestGetFailRatesCouriers(t *testing.T) {
 
 func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
 	biteship := New(WithSecret(secretKey))
+	var (
+		destLat  = -6.2441792
+		destLong = 106.783529000
+	)
 
 	var items []ItemCourierRate
 	items = append(items, ItemCourierRate{
@@ -108,8 +120,8 @@ func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
 	})
 
 	req := RequestCourierRates{
-		DestinationLatitude:  -6.2441792,
-		DestinationLongitude: 106.783529000,
+		DestinationLatitude:  &destLat,
+		DestinationLongitude: &destLong,
 		OriginPostalCode:     12440,
 		Items:                items,
 	}
