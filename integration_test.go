@@ -1,3 +1,5 @@
+//go:build integration
+
 package biteship
 
 import (
@@ -21,6 +23,7 @@ var (
 )
 
 func TestGetCourier(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.GetCouriers()
@@ -29,6 +32,7 @@ func TestGetCourier(t *testing.T) {
 }
 
 func TestGetCourierWithInvalidSecretKey(t *testing.T) {
+
 	biteship := New(WithSecret(invalidSecretKey))
 
 	resp, err := biteship.GetCouriers()
@@ -38,6 +42,7 @@ func TestGetCourierWithInvalidSecretKey(t *testing.T) {
 }
 
 func TestGetRatesCouriers(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 	var (
 		destLat  = -6.2441792
@@ -70,6 +75,7 @@ func TestGetRatesCouriers(t *testing.T) {
 }
 
 func TestGetFailRatesCouriers(t *testing.T) {
+
 	biteship := New(WithSecret(invalidSecretKey))
 	var (
 		destLat  = -6.2441792
@@ -103,6 +109,7 @@ func TestGetFailRatesCouriers(t *testing.T) {
 }
 
 func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 	var (
 		destLat  = -6.2441792
@@ -134,6 +141,7 @@ func TestGetMissingRequiredParamRatesCouriers(t *testing.T) {
 }
 
 func TestCreateAnOrderDirectConfirm(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	var items []ProductItem
@@ -195,6 +203,7 @@ func TestCreateAnOrderDirectConfirm(t *testing.T) {
 }
 
 func TestCreateAnOrderWithDeliveryLater(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	var items []ProductItem
@@ -256,6 +265,7 @@ func TestCreateAnOrderWithDeliveryLater(t *testing.T) {
 }
 
 func TestCreateAnOrderWithInvalidSecretKey(t *testing.T) {
+
 	biteship := New(WithSecret(invalidSecretKey))
 
 	var items []ProductItem
@@ -316,6 +326,7 @@ func TestCreateAnOrderWithInvalidSecretKey(t *testing.T) {
 }
 
 func TestRetrieveOrder(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.RetrieveOrder(orderIdConfirmed)
@@ -325,6 +336,7 @@ func TestRetrieveOrder(t *testing.T) {
 }
 
 func TestRetrieveOrderWithInvalidKey(t *testing.T) {
+
 	biteship := New(WithSecret(invalidSecretKey))
 
 	resp, err := biteship.RetrieveOrder(orderIdConfirmed)
@@ -334,6 +346,7 @@ func TestRetrieveOrderWithInvalidKey(t *testing.T) {
 }
 
 func TestRetrieveOrderWithInvalidOrderId(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, err := biteship.RetrieveOrder("61dce8889a096b081e70198f")
@@ -344,6 +357,7 @@ func TestRetrieveOrderWithInvalidOrderId(t *testing.T) {
 }
 
 func TestUpdateOrderBeforeConfirmed(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
@@ -358,6 +372,7 @@ func TestUpdateOrderBeforeConfirmed(t *testing.T) {
 }
 
 func TestUpdateOrderThatWasConfirmed(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
@@ -372,6 +387,7 @@ func TestUpdateOrderThatWasConfirmed(t *testing.T) {
 }
 
 func TestUpdateOrderThatWasPassedTime(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	requestUpdate := struct {
@@ -385,6 +401,7 @@ func TestUpdateOrderThatWasPassedTime(t *testing.T) {
 }
 
 func TestConfirmOrder(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, _ := biteship.ConfirmOrder(orderIdNotConfirmed)
@@ -395,6 +412,7 @@ func TestConfirmOrder(t *testing.T) {
 }
 
 func TestConfirmOrderThatWasBeenConfirmed(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	_, err := biteship.ConfirmOrder(orderIdConfirmed)
@@ -404,6 +422,7 @@ func TestConfirmOrderThatWasBeenConfirmed(t *testing.T) {
 }
 
 func TestConfirmOrderThatWasBeenCancelled(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	_, err := biteship.ConfirmOrder(orderIdCancelled)
@@ -413,6 +432,7 @@ func TestConfirmOrderThatWasBeenCancelled(t *testing.T) {
 }
 
 func TestCancelOrder(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	reason := "Ingin mengganti kurir"
@@ -428,6 +448,7 @@ func TestCancelOrder(t *testing.T) {
 }
 
 func TestCancelOrderThatWasConfirmed(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	reason := "Ingin mengganti kurir"
@@ -443,6 +464,7 @@ func TestCancelOrderThatWasConfirmed(t *testing.T) {
 }
 
 func TestRetrieveArea_Single(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, err := biteship.RetrieveArea("ID", "Jakarta Selatan")
@@ -453,6 +475,7 @@ func TestRetrieveArea_Single(t *testing.T) {
 }
 
 func TestRetrieveAreaByID(t *testing.T) {
+
 	biteship := New(WithSecret(secretKey))
 
 	resp, err := biteship.RetrieveArea("ID", "Jakarta Selatan")
