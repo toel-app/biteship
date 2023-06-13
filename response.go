@@ -175,7 +175,7 @@ type ResponseListCourier struct {
 }
 
 type ResponseTrackingOrder struct {
-	Success   string `json:"success"`
+	Success   bool   `json:"success"`
 	Message   string `json:"message"`
 	Object    string `json:"object"`
 	Id        string `json:"id"`
