@@ -15,4 +15,6 @@ const (
 	StatusCancelled       Status = "cancelled"
 	StatusOnHold          Status = "on_hold"
 	StatusCourierNotFound Status = "courier_not_found"
+	StatusReturned        Status = "returned"
+	StatusReturnInTransit Status = "return_in_transit"
 )
