@@ -3,7 +3,6 @@ package biteship
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -48,9 +47,13 @@ func (client *HttpRequest) doRequest(req *http.Request, result interface{}) *Err
 	if errRequest != nil {
 		return ErrorGo(errRequest)
 	}
-	defer response.Body.Close()
+	defer func() {
+		if err := response.Body.Close(); err != nil {
+			panic(err)
+		}
+	}()
 
-	respBody, errRead := ioutil.ReadAll(response.Body)
+	respBody, errRead := io.ReadAll(response.Body)
 	if errRead != nil {
 		return ErrorGo(errRead)
 	}

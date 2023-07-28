@@ -69,7 +69,7 @@ type Delivery struct {
 	Note     *string `json:"note"`
 }
 
-// RESPONSE RETRIEVE ORDER
+// ResponseRetrieveOrder RESPONSE RETRIEVE ORDER
 type ResponseRetrieveOrder struct {
 	Success     bool          `json:"success"`
 	Message     string        `json:"message"`
@@ -95,7 +95,7 @@ type ResponseCancelOrder struct {
 	CancellationReason string `json:"cancellation_reason"`
 }
 
-// RATES COURIER
+// PricingRate RATES COURIER
 type PricingRate struct {
 	Company               string `json:"company"`
 	CourierName           string `json:"courier_name"`

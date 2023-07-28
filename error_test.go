@@ -20,7 +20,7 @@ func TestErrorGo(t *testing.T) {
 
 func TestErrorGo_Panics(t *testing.T) {
 	assert.Panics(t, func() {
-		ErrorGo(nil)
+		_ = ErrorGo(nil)
 	})
 }
 
@@ -35,7 +35,7 @@ func TestErrorRequestParam(t *testing.T) {
 
 func TestErrorRequestParams_Panics(t *testing.T) {
 	assert.Panics(t, func() {
-		ErrorRequestParam(nil)
+		_ = ErrorRequestParam(nil)
 	})
 }
 
