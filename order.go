@@ -14,8 +14,8 @@ import (
 type DeliveryType string
 
 const (
-	DeliveryTypeNow   DeliveryType = "now"
-	DeliveryTypeLater DeliveryType = "later"
+	DeliveryTypeNow       DeliveryType = "now"
+	DeliveryTypeScheduled DeliveryType = "scheduled"
 )
 
 func (client *Client) CreateOrder(request *CreateOrderRequestParam) (*ResponseCreateOrder, *Error) {
